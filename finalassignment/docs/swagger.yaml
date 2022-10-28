@@ -1,0 +1,885 @@
+basePath: /
+definitions:
+  dto.Comment:
+    properties:
+      message:
+        type: string
+      photo_id:
+        example: 1
+        type: integer
+    required:
+    - message
+    - photo_id
+    type: object
+  dto.CommentMessage:
+    properties:
+      message:
+        type: string
+    required:
+    - message
+    type: object
+  dto.Photo:
+    properties:
+      caption:
+        type: string
+      photo_url:
+        example: https://subdomain.domain.dom.ge/path?arg=1
+        type: string
+      title:
+        type: string
+    required:
+    - photo_url
+    - title
+    type: object
+  dto.SocialMedia:
+    properties:
+      name:
+        type: string
+      social_media_url:
+        example: https://subdomain.domain.dom.ge/path
+        type: string
+    required:
+    - name
+    - social_media_url
+    type: object
+  dto.UserLogin:
+    properties:
+      email:
+        example: name@org.dom.ge
+        type: string
+      password:
+        minLength: 6
+        type: string
+    required:
+    - email
+    - password
+    type: object
+  dto.UserRegister:
+    properties:
+      age:
+        example: 23
+        type: integer
+      email:
+        example: name@org.dom.ge
+        type: string
+      password:
+        minLength: 6
+        type: string
+      username:
+        type: string
+    required:
+    - age
+    - email
+    - password
+    - username
+    type: object
+  dto.UserUpdate:
+    properties:
+      email:
+        example: name@org.dom.ge
+        type: string
+      username:
+        type: string
+    required:
+    - email
+    - username
+    type: object
+  models.Comment:
+    properties:
+      created_at:
+        example: "2019-11-09T21:21:46+00:00"
+        type: string
+      id:
+        example: 1
+        type: integer
+      message:
+        type: string
+      photo_id:
+        example: 1
+        type: integer
+      updated_at:
+        example: "2019-11-09T21:21:46+00:00"
+        type: string
+      user_id:
+        example: 1
+        type: integer
+    type: object
+  models.Photo:
+    properties:
+      caption:
+        type: string
+      created_at:
+        example: "2019-11-09T21:21:46+00:00"
+        type: string
+      id:
+        example: 1
+        type: integer
+      photo_url:
+        example: https://subdomain.domain.dom.ge/path?arg=1
+        type: string
+      title:
+        type: string
+      updated_at:
+        example: "2019-11-09T21:21:46+00:00"
+        type: string
+      user_id:
+        example: 1
+        type: integer
+    type: object
+  responses.CreateComment:
+    properties:
+      created_at:
+        example: "2019-11-09T21:21:46+00:00"
+        type: string
+      id:
+        example: 1
+        type: integer
+      message:
+        type: string
+      photo_id:
+        example: 1
+        type: integer
+      user_id:
+        example: 1
+        type: integer
+    type: object
+  responses.CreatePhoto:
+    properties:
+      caption:
+        type: string
+      created_at:
+        example: "2019-11-09T21:21:46+00:00"
+        type: string
+      id:
+        example: 1
+        type: integer
+      photo_url:
+        example: https://subdomain.domain.dom.ge/path?arg=1
+        type: string
+      title:
+        type: string
+      user_id:
+        example: 1
+        type: integer
+    type: object
+  responses.CreateSocialMedia:
+    properties:
+      created_at:
+        type: string
+      id:
+        example: 1
+        type: integer
+      name:
+        type: string
+      social_media_url:
+        example: https://subdomain.domain.dom.ge/path
+        type: string
+      user_id:
+        type: integer
+    type: object
+  responses.ErrorMessage:
+    properties:
+      error_message:
+        type: string
+    type: object
+  responses.GetAllSocialMedias:
+    properties:
+      social_medias:
+        items:
+          $ref: '#/definitions/responses.GetSocialMedia'
+        type: array
+    type: object
+  responses.GetComment:
+    properties:
+      created_at:
+        example: "2019-11-09T21:21:46+00:00"
+        type: string
+      id:
+        example: 1
+        type: integer
+      message:
+        type: string
+      photo:
+        $ref: '#/definitions/models.Photo'
+      photo_id:
+        example: 1
+        type: integer
+      updated_at:
+        example: "2019-11-09T21:21:46+00:00"
+        type: string
+      user:
+        $ref: '#/definitions/responses.UserComment'
+      user_id:
+        example: 1
+        type: integer
+    type: object
+  responses.GetPhoto:
+    properties:
+      caption:
+        type: string
+      created_at:
+        example: "2019-11-09T21:21:46+00:00"
+        type: string
+      id:
+        example: 1
+        type: integer
+      photo_url:
+        example: https://subdomain.domain.dom.ge/path?arg=1
+        type: string
+      title:
+        type: string
+      updated_at:
+        example: "2019-11-09T21:21:46+00:00"
+        type: string
+      user:
+        $ref: '#/definitions/dto.UserUpdate'
+      user_id:
+        example: 1
+        type: integer
+    type: object
+  responses.GetSocialMedia:
+    properties:
+      created_at:
+        example: "2019-11-09T21:21:46+00:00"
+        type: string
+      id:
+        example: 1
+        type: integer
+      name:
+        type: string
+      social_media_url:
+        type: string
+      updated_at:
+        example: "2019-11-09T21:21:46+00:00"
+        type: string
+      user:
+        $ref: '#/definitions/responses.UserSocialMedia'
+      user_id:
+        type: integer
+    type: object
+  responses.Message:
+    properties:
+      message:
+        type: string
+    type: object
+  responses.UpdatePhoto:
+    properties:
+      caption:
+        type: string
+      id:
+        example: 1
+        type: integer
+      photo_url:
+        example: https://subdomain.domain.dom.ge/path?arg=1
+        type: string
+      title:
+        type: string
+      updated_at:
+        example: "2019-11-09T21:21:46+00:00"
+        type: string
+      user_id:
+        example: 1
+        type: integer
+    type: object
+  responses.UpdateSocialMedia:
+    properties:
+      id:
+        example: 1
+        type: integer
+      name:
+        type: string
+      social_media_url:
+        example: https://subdomain.domain.dom.ge/path
+        type: string
+      updated_at:
+        example: "2019-11-09T21:21:46+00:00"
+        type: string
+      user_id:
+        example: 1
+        type: integer
+    type: object
+  responses.UserComment:
+    properties:
+      email:
+        example: name@org.dom.ge
+        type: string
+      id:
+        example: 1
+        type: integer
+      username:
+        type: string
+    type: object
+  responses.UserLogin:
+    properties:
+      token:
+        example: header.payload.signature
+        type: string
+    type: object
+  responses.UserRegister:
+    properties:
+      age:
+        example: 23
+        type: integer
+      email:
+        example: name@org.dom.ge
+        type: string
+      id:
+        type: integer
+      username:
+        type: string
+    type: object
+  responses.UserSocialMedia:
+    properties:
+      id:
+        example: 1
+        type: integer
+      username:
+        type: string
+    type: object
+  responses.UserUpdate:
+    properties:
+      age:
+        example: 23
+        type: integer
+      email:
+        example: name@org.dom.ge
+        type: string
+      id:
+        example: 1
+        type: integer
+      updated_at:
+        example: "2019-11-09T21:21:46+00:00"
+        type: string
+      username:
+        type: string
+    type: object
+host: localhost:8080
+info:
+  contact:
+    email: premiumforspot@gmail.com
+    name: zulkarnaen
+  description: Final Assignment
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  title: final assignment
+  version: "1.0"
+paths:
+  /comments:
+    get:
+      consumes:
+      - application/json
+      description: Get comments.
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/responses.GetComment'
+            type: array
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/responses.ErrorMessage'
+        "500":
+          description: Internal Server Error
+      security:
+      - BearerAuth: []
+      summary: Get comments
+      tags:
+      - comments
+    post:
+      consumes:
+      - application/json
+      description: Create a Comment associated with the logged in user.
+      parameters:
+      - description: JSON of the comment to be made. Caption is not mandatory.
+        in: body
+        name: comment
+        required: true
+        schema:
+          $ref: '#/definitions/dto.Comment'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/responses.CreateComment'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/responses.ErrorMessage'
+        "500":
+          description: Internal Server Error
+      security:
+      - BearerAuth: []
+      summary: Create a Comment
+      tags:
+      - comments
+  /comments/{commentId}:
+    delete:
+      consumes:
+      - application/json
+      description: Delete a comment associated with logged in user.
+      parameters:
+      - description: ID number of the comment to be deleted
+        in: path
+        name: commentId
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/responses.Message'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/responses.ErrorMessage'
+        "403":
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/responses.ErrorMessage'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/responses.ErrorMessage'
+        "500":
+          description: Internal Server Error
+      security:
+      - BearerAuth: []
+      summary: Delete a comment
+      tags:
+      - comments
+    put:
+      consumes:
+      - application/json
+      description: Update a comment associated with logged in user.
+      parameters:
+      - description: ID number of the comment
+        in: path
+        name: commentId
+        required: true
+        type: integer
+      - description: New JSON of the comment.
+        in: body
+        name: comment
+        required: true
+        schema:
+          $ref: '#/definitions/dto.CommentMessage'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Comment'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/responses.ErrorMessage'
+        "403":
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/responses.ErrorMessage'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/responses.ErrorMessage'
+        "500":
+          description: Internal Server Error
+      security:
+      - BearerAuth: []
+      summary: Update a comment
+      tags:
+      - comments
+  /photos:
+    get:
+      consumes:
+      - application/json
+      description: Get photos.
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/responses.GetPhoto'
+            type: array
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/responses.ErrorMessage'
+        "500":
+          description: Internal Server Error
+      security:
+      - BearerAuth: []
+      summary: Get photos
+      tags:
+      - photos
+    post:
+      consumes:
+      - application/json
+      description: Create a Photo associated with the logged in user identified by
+        bearer token.
+      parameters:
+      - description: JSON of the photo to be made. Caption is not mandatory.
+        in: body
+        name: user
+        required: true
+        schema:
+          $ref: '#/definitions/dto.Photo'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/responses.CreatePhoto'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/responses.ErrorMessage'
+        "500":
+          description: Internal Server Error
+      security:
+      - BearerAuth: []
+      summary: Create a Photo
+      tags:
+      - photos
+  /photos/{photoId}:
+    delete:
+      consumes:
+      - application/json
+      description: Delete a photo associated with logged in user.
+      parameters:
+      - description: ID number of the photo to be deleted
+        in: path
+        name: photoId
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/responses.Message'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/responses.ErrorMessage'
+        "403":
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/responses.ErrorMessage'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/responses.ErrorMessage'
+        "500":
+          description: Internal Server Error
+      security:
+      - BearerAuth: []
+      summary: Delete a photo
+      tags:
+      - photos
+    put:
+      consumes:
+      - application/json
+      description: Update a photo associated with logged in user.
+      parameters:
+      - description: ID number of the photo
+        in: path
+        name: photoId
+        required: true
+        type: integer
+      - description: New JSON of the photo.
+        in: body
+        name: photo
+        required: true
+        schema:
+          $ref: '#/definitions/dto.Photo'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/responses.UpdatePhoto'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/responses.ErrorMessage'
+        "403":
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/responses.ErrorMessage'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/responses.ErrorMessage'
+        "500":
+          description: Internal Server Error
+      security:
+      - BearerAuth: []
+      summary: Update a photo
+      tags:
+      - photos
+  /socialmedias:
+    get:
+      consumes:
+      - application/json
+      description: Get social medias.
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/responses.GetAllSocialMedias'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/responses.ErrorMessage'
+        "500":
+          description: Internal Server Error
+      security:
+      - BearerAuth: []
+      summary: Get social medias
+      tags:
+      - socialMedias
+    post:
+      consumes:
+      - application/json
+      description: Create a social media associated with the logged in user.
+      parameters:
+      - description: JSON of the social media to be made.
+        in: body
+        name: socialMedia
+        required: true
+        schema:
+          $ref: '#/definitions/dto.SocialMedia'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/responses.CreateSocialMedia'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/responses.ErrorMessage'
+        "500":
+          description: Internal Server Error
+      security:
+      - BearerAuth: []
+      summary: Create a social media
+      tags:
+      - socialMedias
+  /socialmedias/{socialMediaId}:
+    delete:
+      consumes:
+      - application/json
+      description: Delete a social media associated with logged in user.
+      parameters:
+      - description: ID number of the social media to be deleted
+        in: path
+        name: socialMediaId
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/responses.Message'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/responses.ErrorMessage'
+        "403":
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/responses.ErrorMessage'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/responses.ErrorMessage'
+        "500":
+          description: Internal Server Error
+      security:
+      - BearerAuth: []
+      summary: Delete a social media
+      tags:
+      - socialMedias
+    put:
+      consumes:
+      - application/json
+      description: Update a social media associated with logged in user.
+      parameters:
+      - description: ID number of the social media
+        in: path
+        name: socialMediaId
+        required: true
+        type: integer
+      - description: New JSON of the social media.
+        in: body
+        name: socialMedia
+        required: true
+        schema:
+          $ref: '#/definitions/dto.SocialMedia'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/responses.UpdateSocialMedia'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/responses.ErrorMessage'
+        "403":
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/responses.ErrorMessage'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/responses.ErrorMessage'
+        "500":
+          description: Internal Server Error
+      security:
+      - BearerAuth: []
+      summary: Update a social media
+      tags:
+      - socialMedias
+  /users:
+    delete:
+      consumes:
+      - application/json
+      description: Delete logged in user identified by their bearer token.
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/responses.Message'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/responses.ErrorMessage'
+        "500":
+          description: Internal Server Error
+      security:
+      - BearerAuth: []
+      summary: Delete logged in user
+      tags:
+      - users
+    put:
+      consumes:
+      - application/json
+      description: update logged in user identified by their bearer token.
+      parameters:
+      - description: New email and new username of the logged in user. Leave one of
+          it empty if you want it to stay the same.
+        in: body
+        name: user
+        required: true
+        schema:
+          $ref: '#/definitions/dto.UserUpdate'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/responses.UserUpdate'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/responses.ErrorMessage'
+        "500":
+          description: Internal Server Error
+      security:
+      - BearerAuth: []
+      summary: Update logged in user
+      tags:
+      - users
+  /users/login:
+    post:
+      consumes:
+      - application/json
+      description: Login a user.
+      parameters:
+      - description: JSON of the user to login. Minimum password length is 6.
+        in: body
+        name: user
+        required: true
+        schema:
+          $ref: '#/definitions/dto.UserLogin'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/responses.UserLogin'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/responses.ErrorMessage'
+        "500":
+          description: Internal Server Error
+      summary: Login a user
+      tags:
+      - users
+  /users/register:
+    post:
+      consumes:
+      - application/json
+      description: Register a new user.
+      parameters:
+      - description: JSON of the user to be made. Minimum age is 9. Minimum password
+          length is 6
+        in: body
+        name: user
+        required: true
+        schema:
+          $ref: '#/definitions/dto.UserRegister'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/responses.UserRegister'
+        "209":
+          description: ""
+          schema:
+            $ref: '#/definitions/responses.Message'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/responses.ErrorMessage'
+        "500":
+          description: Internal Server Error
+      summary: Register a new user
+      tags:
+      - users
+securityDefinitions:
+  BearerAuth:
+    in: header
+    name: Authorization
+    type: apiKey
+swagger: "2.0"
