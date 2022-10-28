@@ -1,2 +1,2 @@
-nama database : finalassignmentdb
+nama database postgresql : finalassignmentdb
 # finalassignment
